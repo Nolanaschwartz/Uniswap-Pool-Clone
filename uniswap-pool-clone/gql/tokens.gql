@@ -1,0 +1,12 @@
+query tokens($skip: Int, $limit: Int) {
+    tokens(first: $limit skip: $skip) {
+        name
+        symbol
+        decimals
+        totalSupply
+        volumeUSD
+        totalValueLockedUSD
+        txCount
+        id
+    }
+}

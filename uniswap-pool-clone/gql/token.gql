@@ -1,0 +1,11 @@
+query token($token: ID!) {
+    token(id: $token){
+        tokenDayData{
+            priceUSD
+        }
+        txCount
+        
+
+
+    }
+}

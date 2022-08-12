@@ -1,0 +1,7 @@
+query tokenTransactions($ID: ID!){
+    transactions(where: {id: $ID}) {
+        id
+        timestamp
+
+    }
+}
