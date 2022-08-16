@@ -1,0 +1,5 @@
+query ethPrice {
+    bundle(id: "1") {
+        ethPriceUSD
+    }
+}

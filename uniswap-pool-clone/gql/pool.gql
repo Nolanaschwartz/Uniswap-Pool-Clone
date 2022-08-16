@@ -2,10 +2,10 @@ query pool($pool: ID!, $skip: Int!, $limit: Int! $swaps: Boolean! $burns: Boolea
     pool(id: $pool){
         txCount
         token0 {
-            symbol
+            ...Token
         }
         token1 {
-            symbol
+            ...Token
         }
         txCount
         id
@@ -39,5 +39,10 @@ fragment Transactions on Pool{
             id
         }
     }
+}
+
+fragment Token on Token {
+    symbol
+    derivedETH
 }
 
