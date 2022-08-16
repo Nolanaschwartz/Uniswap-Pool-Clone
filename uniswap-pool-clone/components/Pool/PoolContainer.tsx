@@ -8,7 +8,12 @@ const PoolContainer = () => {
       <GridItem colSpan={4}>
         <PoolTransactionSelector />
       </GridItem>
-      <GridItem colSpan={12}>
+      <GridItem
+        colSpan={12}
+        border="2px solid #000"
+        borderRadius={"4px"}
+        padding={"8px"}
+      >
         <PoolTable />
       </GridItem>
     </Grid>

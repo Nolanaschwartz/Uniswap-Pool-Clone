@@ -44,10 +44,10 @@ const PoolsTable = ({
             style={{ cursor: "pointer" }}
             key={pool.id}
           >
-            <Td>{`${pool.token0.symbol}/${pool.token1.symbol}`}</Td>
-            <Td>{pool.txCount}</Td>
-            <Td>{formatUSD(pool.totalValueLockedUSD)}</Td>
-            <Td>{formatUSD(pool.volumeUSD)}</Td>
+            <Td w="50%">{`${pool.token0.symbol}/${pool.token1.symbol}`}</Td>
+            <Td textAlign="center">{pool.txCount}</Td>
+            <Td textAlign="center">{formatUSD(pool.totalValueLockedUSD)}</Td>
+            <Td textAlign="center">{formatUSD(pool.volumeUSD)}</Td>
           </Tr>
         ))
       );
@@ -69,10 +69,10 @@ const PoolsTable = ({
         >
           <Thead>
             <Tr>
-              <Th>Pair</Th>
-              <Th>TX Count</Th>
-              <Th>TVL (USD)</Th>
-              <Th>Volume (USD)</Th>
+              <Th w="50%">Pair</Th>
+              <Th textAlign="center">TX Count</Th>
+              <Th textAlign="center">TVL (USD)</Th>
+              <Th textAlign="center">Volume (USD)</Th>
             </Tr>
           </Thead>
           <Tbody>{body}</Tbody>

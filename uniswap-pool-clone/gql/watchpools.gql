@@ -1,20 +1,20 @@
-query watchpools ($IDS: [ID!]){
-    pools(where: {id_in: $IDS}){
-        ...PoolData
-    }
+query watchpools($IDS: [ID!]) {
+  pools(where: { id_in: $IDS }) {
+    ...PoolData
+  }
 }
 
-fragment PoolData on Pool{
-    id
-    volumeUSD
-    txCount
-    totalValueLockedUSD
-    token0 {
-        name
-        symbol
-    }
-    token1 {
-        name
-        symbol
-    }
+fragment PoolData on Pool {
+  id
+  volumeUSD
+  txCount
+  totalValueLockedUSD
+  token0 {
+    name
+    symbol
+  }
+  token1 {
+    name
+    symbol
+  }
 }

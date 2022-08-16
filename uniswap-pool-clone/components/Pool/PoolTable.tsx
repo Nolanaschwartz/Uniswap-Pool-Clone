@@ -1,5 +1,4 @@
 import {
-  Spinner,
   Table,
   TableContainer,
   Tbody,
@@ -11,10 +10,10 @@ import {
   Container,
   HStack,
   Button,
+  Box,
 } from "@chakra-ui/react";
 import usePool from "../../hooks/usePool";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import moment from "moment";
 import { formatUSD } from "../../util/util";
 
@@ -28,21 +27,25 @@ const PoolTable = () => {
         state.transactions.map((transaction) => {
           return (
             <Tr>
-              <Td maxW={"40ch"}>
-                <Link
-                  style={{ textOverflow: "ellipsis" }}
-                  target={"_blank"}
-                  href={`https://etherscan.io/tx/${transaction.id}`}
-                >
-                  <Text
-                    noOfLines={1}
-                    textOverflow={"ellipsis"}
-                  >{`https://etherscan.io/tx/${transaction.id}`}</Text>
-                </Link>
+              <Td w="50%">
+                <Box maxW="40ch" textOverflow="ellipsis">
+                  <a
+                    style={{ cursor: "pointer" }}
+                    target={"_blank"}
+                    href={`https://etherscan.io/tx/${transaction.id}`}
+                  >
+                    <Text
+                      noOfLines={1}
+                      textOverflow={"ellipsis"}
+                    >{`https://etherscan.io/tx/${transaction.id}`}</Text>
+                  </a>
+                </Box>
               </Td>
-              <Td>{transaction.__typename}</Td>
-              <Td>{formatUSD(transaction.amountUSD)}</Td>
-              <Td>{moment.unix(parseInt(transaction.timestamp)).fromNow()}</Td>
+              <Td textAlign="center">{transaction.__typename}</Td>
+              <Td textAlign="center">{formatUSD(transaction.amountUSD)}</Td>
+              <Td textAlign="center">
+                {moment.unix(parseInt(transaction.timestamp)).fromNow()}
+              </Td>
             </Tr>
           );
         })
@@ -59,10 +62,10 @@ const PoolTable = () => {
       >
         <Thead>
           <Tr>
-            <Th>Link to Etherscan</Th>
-            <Th>TX Type</Th>
-            <Th>Token Amount (USD)</Th>
-            <Th>Timestamp</Th>
+            <Th w="50%">Link to Etherscan</Th>
+            <Th textAlign="center">TX Type</Th>
+            <Th textAlign="center">Token Amount (USD)</Th>
+            <Th textAlign="center">Timestamp</Th>
           </Tr>
         </Thead>
         <Tbody>{body}</Tbody>

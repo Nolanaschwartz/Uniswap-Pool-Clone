@@ -1,5 +1,5 @@
 query ethPrice {
-    bundle(id: "1") {
-        ethPriceUSD
-    }
+  bundle(id: "1") {
+    ethPriceUSD
+  }
 }

@@ -1,48 +1,57 @@
-query pool($pool: ID!, $skip: Int!, $limit: Int! $swaps: Boolean! $burns: Boolean! $mints: Boolean!  ) {
-    pool(id: $pool){
-        txCount
-        token0 {
-            ...Token
-        }
-        token1 {
-            ...Token
-        }
-        txCount
-        id
-        ...Transactions
+query pool(
+  $pool: ID!
+  $skip: Int!
+  $limit: Int!
+  $swaps: Boolean!
+  $burns: Boolean!
+  $mints: Boolean!
+) {
+  pool(id: $pool) {
+    txCount
+    token0 {
+      ...Token
     }
+    token1 {
+      ...Token
+    }
+    txCount
+    id
+    ...Transactions
+  }
 }
 
-fragment Transactions on Pool{
-    swaps(skip: $skip orderBy: timestamp orderDirection: asc first:$limit) @include(if: $swaps) {
-        id
-        amountUSD
-        timestamp
-        transaction {
-            id
-        }
+fragment Transactions on Pool {
+  swaps(skip: $skip, orderBy: timestamp, orderDirection: asc, first: $limit)
+    @include(if: $swaps) {
+    id
+    amountUSD
+    timestamp
+    transaction {
+      id
     }
-    burns(skip: $skip orderBy: timestamp orderDirection: asc first:$limit)@include(if: $burns){
-        id
-        amountUSD
-        timestamp
-        transaction {
-            id
-        }
+  }
+  burns(skip: $skip, orderBy: timestamp, orderDirection: asc, first: $limit)
+    @include(if: $burns) {
+    id
+    amountUSD
+    timestamp
+    transaction {
+      id
     }
+  }
 
-    mints(skip: $skip orderBy: timestamp orderDirection: asc first:$limit) @include(if: $mints){
-        id
-        amountUSD
-        timestamp
-        transaction {
-            id
-        }
+  mints(skip: $skip, orderBy: timestamp, orderDirection: asc, first: $limit)
+    @include(if: $mints) {
+    id
+    amountUSD
+    timestamp
+    transaction {
+      id
     }
+  }
 }
 
 fragment Token on Token {
-    symbol
-    derivedETH
+  symbol
+  derivedETH
 }
-
