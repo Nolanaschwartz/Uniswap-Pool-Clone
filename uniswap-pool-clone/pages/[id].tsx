@@ -1,14 +1,19 @@
-import { useRouter } from "next/router";
+import { PoolProvider } from "../hooks/usePool";
+import PoolContainer from "../components/Pool/PoolContainer";
+import Link from "next/link";
+import { GridItem, HStack } from "@chakra-ui/react";
 
-const TokenPage = () => {
-  const router = useRouter();
-  const { id } = router.query;
-
+const PoolPage = () => {
   return (
-    <div>
-      <h1>{id}</h1>
-    </div>
+    <PoolProvider>
+      <GridItem w="100%" colSpan={12}>
+        <HStack width="100%">
+          <Link href="/">Back to Pools</Link>
+        </HStack>
+        <PoolContainer />
+      </GridItem>
+    </PoolProvider>
   );
 };
 
-export default TokenPage;
+export default PoolPage;

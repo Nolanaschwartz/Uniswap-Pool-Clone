@@ -1,0 +1,17 @@
+query pools($skip: Int, $limit: Int) {
+    pools(first: $limit skip: $skip){
+        id
+        volumeUSD
+        txCount
+        totalValueLockedUSD
+        token0 {
+            name
+            symbol
+        }
+        token1 {
+            name
+            symbol
+        }
+
+    }
+}

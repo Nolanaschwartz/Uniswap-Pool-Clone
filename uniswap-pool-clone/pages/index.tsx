@@ -1,21 +1,14 @@
 import type { NextPage } from "next";
 
-import { Button, HStack } from "@chakra-ui/react";
+import { GridItem } from "@chakra-ui/react";
 
-import useTokens, { TokensProvider } from "../hooks/useTokens";
-import TokenTable from "../components/TokenTable";
+import PoolsTable from "../components/PoolsTable";
 
 const Home: NextPage = () => {
-  const { incrementPage, decrementPage } = useTokens();
-
   return (
-    <>
-      <TokenTable />
-      <HStack>
-        <Button onClick={decrementPage}>Prev</Button>
-        <Button onClick={incrementPage}>Next</Button>
-      </HStack>
-    </>
+    <GridItem w="100%" colSpan={12}>
+      <PoolsTable />
+    </GridItem>
   );
 };
 

@@ -7,7 +7,7 @@ import {
   useReducer,
 } from "react";
 import { useQuery } from "@apollo/client";
-import tokens from "../gql/tokens.gql";
+import pools from "../gql/pools.gql";
 
 interface IQueryParams {
   page: number;
@@ -44,24 +44,24 @@ const defaultQueryParams: IQueryParams = {
   page: 0,
 };
 
-const TokensContext = createContext<IQueryContext>({
+const PoolsContext = createContext<IQueryContext>({
   state: defaultQueryParams,
   dispatch: () => undefined,
 });
 
-export const TokensProvider = ({ children }) => {
+export const PoolsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(queryReducer, defaultQueryParams);
   const value = useMemo(() => ({ state, dispatch }), [state]);
 
   return (
-    <TokensContext.Provider value={value}>{children}</TokensContext.Provider>
+    <PoolsContext.Provider value={value}>{children}</PoolsContext.Provider>
   );
 };
 
-const useTokens = () => {
-  const { state, dispatch } = useContext(TokensContext);
+const usePools = () => {
+  const { state, dispatch } = useContext(PoolsContext);
 
-  const { loading, error, data } = useQuery(tokens, {
+  const { loading, error, data } = useQuery(pools, {
     variables: {
       skip: 10 * state.page || 0,
       limit: 10,
@@ -74,4 +74,4 @@ const useTokens = () => {
   return { loading, error, data, incrementPage, decrementPage, state };
 };
 
-export default useTokens;
+export default usePools;

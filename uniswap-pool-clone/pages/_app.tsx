@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
-import { ChakraProvider, VStack } from "@chakra-ui/react";
+import { Box, ChakraProvider, Container, Grid, VStack } from "@chakra-ui/react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { TokensProvider } from "../hooks/useTokens";
+import { PoolsProvider } from "../hooks/usePools";
 
 const client = new ApolloClient({
   uri: "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3",
@@ -12,11 +12,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <ChakraProvider>
-        <TokensProvider>
-          <VStack maxW='1280px' margin='auto'>
-            <Component {...pageProps} />
-          </VStack>
-        </TokensProvider>
+        <PoolsProvider>
+          <Box width={"1280px"} margin="auto">
+            <Grid templateColumns="repeat(12, 1fr)" gap={12}>
+              <Component {...pageProps} />
+            </Grid>
+          </Box>
+        </PoolsProvider>
       </ChakraProvider>
     </ApolloProvider>
   );
