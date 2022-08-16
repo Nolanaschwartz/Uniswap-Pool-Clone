@@ -13,7 +13,14 @@ const WatchlistContainer = () => {
     },
     skip: Object.keys(state.watched).length === 0,
   });
-  return <PoolsTable pools={data?.pools} error={error} loading={loading} />;
+  return (
+    <PoolsTable
+      pools={data?.pools}
+      error={error}
+      loading={loading}
+      title={"Pool Watchlist"}
+    />
+  );
 };
 
 export default WatchlistContainer;

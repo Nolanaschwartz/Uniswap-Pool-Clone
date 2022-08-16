@@ -1,6 +1,7 @@
 import {
   Button,
   Container,
+  Heading,
   HStack,
   Table,
   TableContainer,
@@ -15,6 +16,7 @@ import { useEffect, useState } from "react";
 import { formatUSD } from "../../util/util";
 
 export interface IPoolsTableProps {
+  title: string;
   pools?: any;
   loading: boolean;
   error?: any;
@@ -23,6 +25,7 @@ export interface IPoolsTableProps {
 }
 
 const PoolsTable = ({
+  title,
   pools,
   loading,
   error,
@@ -54,32 +57,37 @@ const PoolsTable = ({
   }, [pools, error]);
 
   return (
-    <TableContainer width={"100%"}>
-      <Table
-        variant="simple"
-        size="lg"
-        style={loading ? { background: "rgba(0, 0, 0, 0.1)" } : {}}
-      >
-        <Thead>
-          <Tr>
-            <Th>Pair</Th>
-            <Th>TX Count</Th>
-            <Th>TVL (USD)</Th>
-            <Th>Volume (USD)</Th>
-          </Tr>
-        </Thead>
-        <Tbody>{body}</Tbody>
-      </Table>
+    <>
+      <Heading as="h2" size="lg">
+        {title}
+      </Heading>
+      <TableContainer width={"100%"}>
+        <Table
+          variant="simple"
+          size="lg"
+          style={loading ? { background: "rgba(0, 0, 0, 0.1)" } : {}}
+        >
+          <Thead>
+            <Tr>
+              <Th>Pair</Th>
+              <Th>TX Count</Th>
+              <Th>TVL (USD)</Th>
+              <Th>Volume (USD)</Th>
+            </Tr>
+          </Thead>
+          <Tbody>{body}</Tbody>
+        </Table>
 
-      {decrementPage && incrementPage && (
-        <Container centerContent={true} width="100%" marginTop={"8px"}>
-          <HStack>
-            <Button onClick={decrementPage}>Prev</Button>
-            <Button onClick={incrementPage}>Next</Button>
-          </HStack>
-        </Container>
-      )}
-    </TableContainer>
+        {decrementPage && incrementPage && (
+          <Container centerContent={true} width="100%" marginTop={"8px"}>
+            <HStack>
+              <Button onClick={decrementPage}>Prev</Button>
+              <Button onClick={incrementPage}>Next</Button>
+            </HStack>
+          </Container>
+        )}
+      </TableContainer>
+    </>
   );
 };
 
