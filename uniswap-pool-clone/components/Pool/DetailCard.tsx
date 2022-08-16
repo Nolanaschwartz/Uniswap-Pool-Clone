@@ -8,7 +8,7 @@ const DetailCard = () => {
   const { data } = usePool();
   const { data: ETHData } = useQuery(ETHPrice);
 
-  if (!data) {
+  if (!data || !ETHData) {
     return undefined;
   }
   const { ethPriceUSD } = ETHData.bundle;

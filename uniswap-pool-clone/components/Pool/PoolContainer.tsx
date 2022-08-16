@@ -1,4 +1,3 @@
-import usePool from "../../hooks/usePool";
 import PoolTransactionSelector from "./PoolTransactionSelector";
 import PoolTable from "./PoolTable";
 import { Grid, GridItem } from "@chakra-ui/react";

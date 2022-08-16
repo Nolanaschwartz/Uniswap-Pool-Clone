@@ -11,19 +11,31 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import usePools from "../hooks/usePools";
 import { useEffect, useState } from "react";
-import { formatUSD } from "../util/util";
+import { formatUSD } from "../../util/util";
 
-const PoolsTable = () => {
+export interface IPoolsTableProps {
+  pools?: any;
+  loading: boolean;
+  error?: any;
+  incrementPage?: () => void;
+  decrementPage?: () => void;
+}
+
+const PoolsTable = ({
+  pools,
+  loading,
+  error,
+  incrementPage,
+  decrementPage,
+}: IPoolsTableProps) => {
   const router = useRouter();
   const [body, setBody] = useState<any>(undefined);
-  const { data, loading, error, incrementPage, decrementPage } = usePools();
 
   useEffect(() => {
-    if (data?.pools) {
+    if (pools) {
       setBody(
-        data?.pools.map((pool: any) => (
+        pools.map((pool: any) => (
           <Tr
             onClick={() => router.push(`/${pool.id}`)}
             style={{ cursor: "pointer" }}
@@ -39,7 +51,7 @@ const PoolsTable = () => {
     } else if (error) {
       setBody(<div>{error.name}</div>);
     }
-  }, [data, error]);
+  }, [pools, error]);
 
   return (
     <TableContainer width={"100%"}>
@@ -59,12 +71,14 @@ const PoolsTable = () => {
         <Tbody>{body}</Tbody>
       </Table>
 
-      <Container centerContent={true} width="100%" marginTop={"8px"}>
-        <HStack>
-          <Button onClick={decrementPage}>Prev</Button>
-          <Button onClick={incrementPage}>Next</Button>
-        </HStack>
-      </Container>
+      {decrementPage && incrementPage && (
+        <Container centerContent={true} width="100%" marginTop={"8px"}>
+          <HStack>
+            <Button onClick={decrementPage}>Prev</Button>
+            <Button onClick={incrementPage}>Next</Button>
+          </HStack>
+        </Container>
+      )}
     </TableContainer>
   );
 };

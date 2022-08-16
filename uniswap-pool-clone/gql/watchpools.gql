@@ -1,5 +1,5 @@
-query pools($skip: Int, $limit: Int) {
-    pools(first: $limit skip: $skip orderBy: txCount orderDirection: desc ){
+query watchpools ($IDS: [ID!]){
+    pools(where: {id_in: $IDS}){
         ...PoolData
     }
 }
