@@ -21,7 +21,7 @@ query pool(
 }
 
 fragment Transactions on Pool {
-  swaps(skip: $skip, orderBy: timestamp, orderDirection: asc, first: $limit)
+  swaps(skip: $skip, orderBy: timestamp, orderDirection: desc, first: $limit)
     @include(if: $swaps) {
     id
     amountUSD
@@ -30,7 +30,7 @@ fragment Transactions on Pool {
       id
     }
   }
-  burns(skip: $skip, orderBy: timestamp, orderDirection: asc, first: $limit)
+  burns(skip: $skip, orderBy: timestamp, orderDirection: desc, first: $limit)
     @include(if: $burns) {
     id
     amountUSD
@@ -40,7 +40,7 @@ fragment Transactions on Pool {
     }
   }
 
-  mints(skip: $skip, orderBy: timestamp, orderDirection: asc, first: $limit)
+  mints(skip: $skip, orderBy: timestamp, orderDirection: desc, first: $limit)
     @include(if: $mints) {
     id
     amountUSD
