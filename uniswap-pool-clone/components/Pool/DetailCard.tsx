@@ -7,7 +7,6 @@ import ETHPrice from "../../gql/ETHPrice.gql";
 const DetailCard = () => {
   const { data } = usePool();
   const { data: ETHData } = useQuery(ETHPrice);
-
   if (!data || !ETHData) {
     return undefined;
   }

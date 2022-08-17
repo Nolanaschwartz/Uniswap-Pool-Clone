@@ -54,4 +54,5 @@ fragment Transactions on Pool {
 fragment Token on Token {
   symbol
   derivedETH
+  id
 }

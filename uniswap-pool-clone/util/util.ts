@@ -1,4 +1,6 @@
 import { BigNumber } from "ethers";
+import axios from "axios";
+import CoinGecko from "coingecko-api";
 
 export const formatUSD = (num: any) => {
   let number = num;
@@ -12,4 +14,13 @@ export const formatUSD = (num: any) => {
     maximumFractionDigits: 2,
     notation: "compact",
   }).format(number);
+};
+
+export const tokenImageFetcher = async (tokenAddress: string) => {
+  console.log("tokenImageFetcher", tokenAddress);
+  const coinGeckoClient = new CoinGecko();
+  const { data } = await coinGeckoClient.coins.fetchCoinContractInfo(
+    tokenAddress
+  );
+  return data.image.small;
 };

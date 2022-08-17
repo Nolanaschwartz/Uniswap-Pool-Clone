@@ -7,17 +7,28 @@ import {
   GridItem,
   Heading,
   HStack,
+  Image,
   Spacer,
 } from "@chakra-ui/react";
 import DetailCard from "../components/Pool/DetailCard";
 import useWatchlist from "../hooks/useWatchlist";
 import { useEffect, useState } from "react";
+import useSWR from "swr";
+import { tokenImageFetcher } from "../util/util";
 
 const PoolPage = () => {
   const { addPool, removePool, state } = useWatchlist();
   const { data } = usePool();
   const [isWatched, setIsWatched] = useState(!!state.watched[data?.pool.id]);
 
+  const { data: token0ImageURL } = useSWR(
+    data?.pool.token0.id,
+    tokenImageFetcher
+  );
+  const { data: token1ImageURL } = useSWR(
+    data?.pool.token1.id,
+    tokenImageFetcher
+  );
   useEffect(() => {
     console.log(state?.watched);
     if (data?.pool && state?.watched) {
@@ -34,9 +45,26 @@ const PoolPage = () => {
       <GridItem w="100%" colSpan={12}>
         <Grid templateColumns="repeat(12, 1fr)" gap={12}>
           <GridItem colSpan={4}>
-            <Heading as="h1" size="lg">{`${data?.pool.token0.symbol || ""}/${
-              data?.pool.token1.symbol || ""
-            }`}</Heading>
+            <HStack>
+              <Image
+                src={token0ImageURL}
+                h="36px"
+                w="36px"
+                borderRadius="18px"
+                border="2px solid black"
+              />
+              <Image
+                src={token1ImageURL}
+                h="36px"
+                w="36px"
+                borderRadius="18px"
+                border="2px solid black"
+                marginLeft="-15px !important"
+              />
+              <Heading as="h1" size="lg">{`${data?.pool.token0.symbol || ""}/${
+                data?.pool.token1.symbol || ""
+              }`}</Heading>
+            </HStack>
           </GridItem>
           <GridItem colSpan={4} />
           <GridItem colSpan={4} justifySelf={"flex-end"}>

@@ -12,9 +12,11 @@ fragment PoolData on Pool {
   token0 {
     name
     symbol
+    id
   }
   token1 {
     name
     symbol
+    id
   }
 }

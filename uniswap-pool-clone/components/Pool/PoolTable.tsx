@@ -2,20 +2,16 @@ import {
   Table,
   TableContainer,
   Tbody,
-  Td,
   Th,
   Thead,
-  Text,
   Tr,
   Container,
   HStack,
   Button,
-  Box,
 } from "@chakra-ui/react";
 import usePool from "../../hooks/usePool";
 import { useEffect, useState } from "react";
-import moment from "moment";
-import { formatUSD } from "../../util/util";
+import PoolBodyRow from "./PoolBodyRow";
 
 const PoolTable = () => {
   const { loading, error, state, incrementPage, decrementPage } = usePool();
@@ -25,29 +21,7 @@ const PoolTable = () => {
     if (state.transactions) {
       setBody(
         state.transactions.map((transaction) => {
-          return (
-            <Tr>
-              <Td w="50%">
-                <Box maxW="40ch" textOverflow="ellipsis">
-                  <a
-                    style={{ cursor: "pointer" }}
-                    target={"_blank"}
-                    href={`https://etherscan.io/tx/${transaction.id}`}
-                  >
-                    <Text
-                      noOfLines={1}
-                      textOverflow={"ellipsis"}
-                    >{`https://etherscan.io/tx/${transaction.id}`}</Text>
-                  </a>
-                </Box>
-              </Td>
-              <Td textAlign="center">{transaction.__typename}</Td>
-              <Td textAlign="center">{formatUSD(transaction.amountUSD)}</Td>
-              <Td textAlign="center">
-                {moment.unix(parseInt(transaction.timestamp)).fromNow()}
-              </Td>
-            </Tr>
-          );
+          return <PoolBodyRow transaction={transaction} key={transaction.id} />;
         })
       );
     }

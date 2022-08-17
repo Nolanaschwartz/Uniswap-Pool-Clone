@@ -14,6 +14,7 @@ import {
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { formatUSD } from "../../util/util";
+import PoolsBodyRow from "./PoolsBodyRow";
 
 export interface IPoolsTableProps {
   title: string;
@@ -32,24 +33,12 @@ const PoolsTable = ({
   incrementPage,
   decrementPage,
 }: IPoolsTableProps) => {
-  const router = useRouter();
   const [body, setBody] = useState<any>(undefined);
 
   useEffect(() => {
     if (pools) {
       setBody(
-        pools.map((pool: any) => (
-          <Tr
-            onClick={() => router.push(`/${pool.id}`)}
-            style={{ cursor: "pointer" }}
-            key={pool.id}
-          >
-            <Td w="50%">{`${pool.token0.symbol}/${pool.token1.symbol}`}</Td>
-            <Td textAlign="center">{pool.txCount}</Td>
-            <Td textAlign="center">{formatUSD(pool.totalValueLockedUSD)}</Td>
-            <Td textAlign="center">{formatUSD(pool.volumeUSD)}</Td>
-          </Tr>
-        ))
+        pools.map((pool: any) => <PoolsBodyRow pool={pool} key={pool.id} />)
       );
     } else if (error) {
       setBody(<div>{error.name}</div>);
