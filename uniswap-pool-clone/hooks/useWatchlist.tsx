@@ -89,6 +89,7 @@ const useWatchlist = () => {
       limit: 10,
     },
     skip: !state.watched,
+    ssr: false,
   });
 
   useEffect(() => {
@@ -111,7 +112,6 @@ const useWatchlist = () => {
   const removePool = (id: string) => {
     watchedPools.removePool(id);
     dispatch({ type: "REMOVE_POOL", id });
-    console.log("deleted");
   };
 
   const incrementPage = () => dispatch({ type: "INCREMENT_PAGE" });

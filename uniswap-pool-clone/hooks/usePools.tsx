@@ -66,6 +66,7 @@ const usePools = () => {
       skip: 10 * state.page || 0,
       limit: 10,
     },
+    ssr: false,
   });
 
   const incrementPage = () => dispatch({ type: "INCREMENT_PAGE" });

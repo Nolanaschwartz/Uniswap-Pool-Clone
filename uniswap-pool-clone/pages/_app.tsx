@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import { Box, ChakraProvider, Container, Grid, VStack } from "@chakra-ui/react";
+import { Box, ChakraProvider, Grid } from "@chakra-ui/react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { PoolsProvider } from "../hooks/usePools";
 import { WatchlistProvider } from "../hooks/useWatchlist";

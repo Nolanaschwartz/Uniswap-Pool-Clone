@@ -93,6 +93,7 @@ const usePool = () => {
       skip: 10 * state.page || 0,
       limit: 10,
     },
+    ssr: false,
   });
 
   useEffect(() => {

@@ -1,5 +1,4 @@
 import { BigNumber } from "ethers";
-import axios from "axios";
 import CoinGecko from "coingecko-api";
 
 export const formatUSD = (num: any) => {
@@ -17,7 +16,6 @@ export const formatUSD = (num: any) => {
 };
 
 export const tokenImageFetcher = async (tokenAddress: string) => {
-  console.log("tokenImageFetcher", tokenAddress);
   const coinGeckoClient = new CoinGecko();
   const { data } = await coinGeckoClient.coins.fetchCoinContractInfo(
     tokenAddress

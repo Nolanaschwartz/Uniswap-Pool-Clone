@@ -8,7 +8,6 @@ import {
   Heading,
   HStack,
   Image,
-  Spacer,
 } from "@chakra-ui/react";
 import DetailCard from "../components/Pool/DetailCard";
 import useWatchlist from "../hooks/useWatchlist";
@@ -30,9 +29,7 @@ const PoolPage = () => {
     tokenImageFetcher
   );
   useEffect(() => {
-    console.log(state?.watched);
     if (data?.pool && state?.watched) {
-      console.log("useEffect");
       setIsWatched(!!state.watched[data?.pool.id]);
     }
   }, [data?.pool, state?.watched[data?.pool.id]]);
