@@ -8,11 +8,12 @@ import { useMemo } from "react";
 const DetailCard = () => {
   const { data } = usePool();
   const { data: ETHData, startPolling } = useQuery(ETHPrice, {
-    pollInterval: 10000,
+    pollInterval: 5000,
+    // fetchPolicy: 'network-only',
     ssr: false,
   });
   const { ethPriceUSD } = ETHData?.bundle || 0;
-  startPolling(10000);
+  startPolling(5000);
 
   return useMemo(
     () => (

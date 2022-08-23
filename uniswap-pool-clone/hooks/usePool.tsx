@@ -78,7 +78,7 @@ const usePool = () => {
   const { state, dispatch } = useContext(PoolContext);
   const router = useRouter();
   const { id } = router.query;
-  const { data, loading, error } = useQuery(pool, {
+  const { startPolling, data, loading, error } = useQuery(pool, {
     variables: {
       pool: id,
       swaps:
@@ -94,7 +94,10 @@ const usePool = () => {
       limit: 10,
     },
     ssr: false,
+    pollInterval: 5000
   });
+
+  startPolling(5000)
 
   useEffect(() => {
     if (data?.pool) {
