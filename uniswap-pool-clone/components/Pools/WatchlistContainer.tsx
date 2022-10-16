@@ -19,6 +19,7 @@ const WatchlistContainer = () => {
       error={error}
       loading={loading}
       title={"Pool Watchlist"}
+      isWatchlist={true}
     />
   );
 };

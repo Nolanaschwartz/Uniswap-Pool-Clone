@@ -94,10 +94,10 @@ const usePool = () => {
       limit: 10,
     },
     ssr: false,
-    pollInterval: 5000
+    pollInterval: 5000,
   });
 
-  startPolling(5000)
+  startPolling(5000);
 
   useEffect(() => {
     if (data?.pool) {

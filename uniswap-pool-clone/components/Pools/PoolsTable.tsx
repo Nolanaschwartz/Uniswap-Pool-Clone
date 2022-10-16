@@ -23,6 +23,7 @@ export interface IPoolsTableProps {
   error?: any;
   incrementPage?: () => void;
   decrementPage?: () => void;
+  isWatchlist?: boolean;
 }
 
 const PoolsTable = ({
@@ -32,13 +33,16 @@ const PoolsTable = ({
   error,
   incrementPage,
   decrementPage,
+  isWatchlist,
 }: IPoolsTableProps) => {
   const [body, setBody] = useState<any>(undefined);
 
   useEffect(() => {
     if (pools) {
       setBody(
-        pools.map((pool: any) => <PoolsBodyRow pool={pool} key={pool.id} />)
+        pools.map((pool: any) => (
+          <PoolsBodyRow pool={pool} key={pool.id} isWatchlist={isWatchlist} />
+        ))
       );
     } else if (error) {
       setBody(<div>{error.name}</div>);

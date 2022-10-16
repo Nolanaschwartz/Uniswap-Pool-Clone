@@ -11,7 +11,7 @@ export const formatUSD = (num: any) => {
     style: "currency",
     currency: "USD",
     maximumFractionDigits: 2,
-    notation: "compact",
+    // notation: "compact",
   }).format(number);
 };
 
